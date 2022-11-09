@@ -3,7 +3,7 @@ const app = express();
 const config = require("./config.json");
 const port = config.PORT || 3000;
 const bodyParser = require("body-parser");
-const { text } = require("./app");
+const  text  = require("./app");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -22,7 +22,8 @@ app.get("/", (req, res) => {
 app.post("*", (req, res) => {
   res.send(req.body.text); // this must be active in order to not stall out server
   console.log(req.body);
-  text(req.body.text, "+14157607438")
+  let text_body = `[AUTOMATED] - ${req.body.user_name} - ${req.body.text}`;
+  text(text_body, "+14157607438");
 });
 
 app.listen(port);
