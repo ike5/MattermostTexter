@@ -7,10 +7,13 @@ const authToken = config.TWILIO_AUTH_TOKEN;
 // require the Twilio module and create a REST client
 const client = require("twilio")(accountSid, authToken);
 
-client.messages
+module.exports = 
+function text (body, phone) {
+  client.messages
   .create({
-    to: "+14157607438",
+    to: phone,
     from: "+15593542917",
-    body: "This is the ship that made the Kessel Run in fourteen parsecs?",
+    body: body,
   })
   .then((message) => console.log(message.sid));
+}
