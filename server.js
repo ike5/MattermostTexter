@@ -16,11 +16,13 @@ app.use(bodyParser.json());
 
 
 app.get("/", (req, res) => {
-    res.send("hello world");
+    res.send("No one should be sending a get request");
 });
 
 app.post("*", (req, res) => {
-    res.send(req.body.body);
+    // res.send(req.body.text);
+    console.log(req.body)
 });
+
 
 app.listen(port);
